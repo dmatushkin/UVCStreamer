@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11134" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11134"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -673,7 +674,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="UVCStreamer" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -703,11 +704,70 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="UVCStreamer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="EuX-iv-7rz">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="221"/>
+                            </customView>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fch-5l-MbA">
+                                <rect key="frame" x="18" y="226" width="77" height="25"/>
+                                <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="jdo-5S-eng" id="AmK-u5-Q0l">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="scZ-VN-nQx">
+                                        <items>
+                                            <menuItem title="Item 1" state="on" id="jdo-5S-eng"/>
+                                            <menuItem title="Item 2" id="kxa-xE-EMl"/>
+                                            <menuItem title="Item 3" id="Hu3-n4-M3v"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="cameraSelectAction:" target="XfG-lQ-9wD" id="pxf-iP-yqz"/>
+                                </connections>
+                            </popUpButton>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ejr-yF-DaE">
+                                <rect key="frame" x="110" y="229" width="282" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Image" drawsBackground="YES" id="bso-qc-ft6">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Om-LO-Oh2">
+                                <rect key="frame" x="396" y="222" width="70" height="32"/>
+                                <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ZF7-JG-lXI">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="saveAction:" target="XfG-lQ-9wD" id="jk4-SD-b98"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="ejr-yF-DaE" firstAttribute="centerY" secondItem="Fch-5l-MbA" secondAttribute="centerY" id="0PH-4g-Ipe"/>
+                            <constraint firstItem="8Om-LO-Oh2" firstAttribute="leading" secondItem="ejr-yF-DaE" secondAttribute="trailing" constant="10" id="6Ha-xh-nWZ"/>
+                            <constraint firstItem="Fch-5l-MbA" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="7dq-qV-txr"/>
+                            <constraint firstAttribute="trailing" secondItem="EuX-iv-7rz" secondAttribute="trailing" id="JOB-7r-ZXG"/>
+                            <constraint firstItem="ejr-yF-DaE" firstAttribute="leading" secondItem="Fch-5l-MbA" secondAttribute="trailing" constant="18" id="XFi-21-cUH"/>
+                            <constraint firstAttribute="trailing" secondItem="8Om-LO-Oh2" secondAttribute="trailing" constant="20" id="lsH-ef-Nxw"/>
+                            <constraint firstAttribute="bottom" secondItem="EuX-iv-7rz" secondAttribute="bottom" id="niX-7B-qea"/>
+                            <constraint firstItem="EuX-iv-7rz" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="pMd-VI-LHc"/>
+                            <constraint firstItem="EuX-iv-7rz" firstAttribute="top" secondItem="Fch-5l-MbA" secondAttribute="bottom" constant="8" id="pjl-Jg-nwh"/>
+                            <constraint firstItem="8Om-LO-Oh2" firstAttribute="centerY" secondItem="ejr-yF-DaE" secondAttribute="centerY" id="sp5-bC-Bvp"/>
+                            <constraint firstItem="Fch-5l-MbA" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="uIT-35-LXu"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cameraPopupButton" destination="Fch-5l-MbA" id="t5s-iF-Sqs"/>
+                        <outlet property="imageNameInput" destination="ejr-yF-DaE" id="w1a-Of-QVz"/>
+                        <outlet property="saveButton" destination="8Om-LO-Oh2" id="Sgy-dF-foz"/>
+                        <outlet property="videoPanel" destination="EuX-iv-7rz" id="wDo-Pc-ozT"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
