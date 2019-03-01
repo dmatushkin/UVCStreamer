@@ -31,6 +31,7 @@ class ViewController: NSViewController, AVCaptureVideoDataOutputSampleBufferDele
     }
     private let output = AVCaptureVideoDataOutput()
     private var isSaving: Bool = false
+    private var settingsController: VVUVCController?
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +51,10 @@ class ViewController: NSViewController, AVCaptureVideoDataOutputSampleBufferDele
             self.captureSession.stopRunning()
             for input in self.captureSession.inputs {
                 self.captureSession.removeInput(input)
+            }
+            if let uvcController = VVUVCController(deviceIDString: device.uniqueID) {
+                self.settingsController = uvcController
+                uvcController.openSettingsWindow()
             }
             try self.captureSession.addInput(AVCaptureDeviceInput(device: device))
             self.captureSession.startRunning()
@@ -108,9 +113,9 @@ class ViewController: NSViewController, AVCaptureVideoDataOutputSampleBufferDele
                 let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
                 if let context = CGContext(data: baseAddress, width: width, height: height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo.rawValue), let cgImage = context.makeImage() {
                     let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
-                    if let imageData = bitmapRep.representation(using: .png, properties: [:]), !(self.lastImage?.elementsEqual(imageData) ?? false) {
+                    if let imageData = bitmapRep.representation(using: .png, properties: [:]), !(self.lastImage?.elementsEqual(imageData) ?? false), let downloads = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first {
                         self.lastImage = imageData
-                        let url = URL(fileURLWithPath: "/Users/dmatushkin/Downloads", isDirectory: true).appendingPathComponent(self.generateFilename())
+                        let url = downloads.appendingPathComponent(self.generateFilename())
                         do {
                             try imageData.write(to: url)
                         } catch {

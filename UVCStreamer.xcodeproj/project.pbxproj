@@ -11,6 +11,35 @@
 		56BDE31C21E21AB5002389DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BDE31B21E21AB5002389DA /* ViewController.swift */; };
 		56BDE31E21E21AB7002389DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56BDE31D21E21AB7002389DA /* Assets.xcassets */; };
 		56BDE32121E21AB7002389DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56BDE31F21E21AB7002389DA /* Main.storyboard */; };
+		56D0E38E21FEE2B30043E41B /* VVUVCController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56D0E35021FEE2B30043E41B /* VVUVCController.xib */; };
+		56D0E39021FEE2B30043E41B /* VVUVCUIController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D0E35521FEE2B30043E41B /* VVUVCUIController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		56D0E39121FEE2B30043E41B /* VVUVCKit-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56D0E35621FEE2B30043E41B /* VVUVCKit-Info.plist */; };
+		56D0E39221FEE2B30043E41B /* VVUVCController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D0E35721FEE2B30043E41B /* VVUVCController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		56D0E39321FEE2B30043E41B /* VVUVCKitStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D0E35821FEE2B30043E41B /* VVUVCKitStringAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		56D0E39421FEE2B30043E41B /* VVUVCUIElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D0E35921FEE2B30043E41B /* VVUVCUIElement.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		56D0E39521FEE2B30043E41B /* OutlineViewNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D0E35F21FEE2B30043E41B /* OutlineViewNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		56D0E39621FEE2B30043E41B /* DecodeDeviceQualifierDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D0E36221FEE2B30043E41B /* DecodeDeviceQualifierDescriptor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		56D0E39821FEE2B30043E41B /* ExtensionSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D0E36521FEE2B30043E41B /* ExtensionSelector.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		56D0E39921FEE2B30043E41B /* DecodeCommClassDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D0E36621FEE2B30043E41B /* DecodeCommClassDescriptor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		56D0E39A21FEE2B30043E41B /* APPLE_LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 56D0E36B21FEE2B30043E41B /* APPLE_LICENSE */; };
+		56D0E39B21FEE2B30043E41B /* DecodeHIDDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D0E36F21FEE2B30043E41B /* DecodeHIDDescriptor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		56D0E39C21FEE2B30043E41B /* DecodeVideoInterfaceDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D0E37121FEE2B30043E41B /* DecodeVideoInterfaceDescriptor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		56D0E39D21FEE2B30043E41B /* USBBusProber-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56D0E37221FEE2B30043E41B /* USBBusProber-Info.plist */; };
+		56D0E39E21FEE2B30043E41B /* BusProber.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D0E37321FEE2B30043E41B /* BusProber.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		56D0E39F21FEE2B30043E41B /* DecodeInterfaceDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D0E37421FEE2B30043E41B /* DecodeInterfaceDescriptor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		56D0E3A021FEE2B30043E41B /* DecodeAudioInterfaceDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D0E37521FEE2B30043E41B /* DecodeAudioInterfaceDescriptor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		56D0E3A121FEE2B30043E41B /* DecodeConfigurationDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D0E37621FEE2B30043E41B /* DecodeConfigurationDescriptor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		56D0E3A221FEE2B30043E41B /* BusProbeDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D0E37721FEE2B30043E41B /* BusProbeDevice.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		56D0E3A321FEE2B30043E41B /* DecodeDeviceDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D0E37B21FEE2B30043E41B /* DecodeDeviceDescriptor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		56D0E3A421FEE2B30043E41B /* OutlineViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D0E37C21FEE2B30043E41B /* OutlineViewAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		56D0E3A521FEE2B30043E41B /* DescriptorDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D0E37E21FEE2B30043E41B /* DescriptorDecoder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		56D0E3A621FEE2B30043E41B /* BusProbeClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D0E37F21FEE2B30043E41B /* BusProbeClass.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		56D0E3A721FEE2B30043E41B /* DecodeBOSDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D0E38021FEE2B30043E41B /* DecodeBOSDescriptor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		56D0E3A821FEE2B30043E41B /* DecodeEndpointDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D0E38121FEE2B30043E41B /* DecodeEndpointDescriptor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		56D0E3A921FEE2B30043E41B /* TableViewWithCopying.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D0E38621FEE2B30043E41B /* TableViewWithCopying.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		56D0E3AA21FEE2B30043E41B /* BusProberSharedFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D0E38821FEE2B30043E41B /* BusProberSharedFunctions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		56D0E3AB21FEE2B30043E41B /* DecodeHubDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D0E38921FEE2B30043E41B /* DecodeHubDescriptor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		56D0E3AC21FEE2B30043E41B /* USBVendors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 56D0E38D21FEE2B30043E41B /* USBVendors.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +50,66 @@
 		56BDE32021E21AB7002389DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		56BDE32221E21AB7002389DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56BDE32321E21AB7002389DA /* UVCStreamer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UVCStreamer.entitlements; sourceTree = "<group>"; };
+		56D0E35021FEE2B30043E41B /* VVUVCController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VVUVCController.xib; sourceTree = "<group>"; };
+		56D0E35121FEE2B30043E41B /* VVUVCUIElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVUVCUIElement.h; sourceTree = "<group>"; };
+		56D0E35321FEE2B30043E41B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		56D0E35421FEE2B30043E41B /* VVUVCKitStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVUVCKitStringAdditions.h; sourceTree = "<group>"; };
+		56D0E35521FEE2B30043E41B /* VVUVCUIController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVUVCUIController.m; sourceTree = "<group>"; };
+		56D0E35621FEE2B30043E41B /* VVUVCKit-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "VVUVCKit-Info.plist"; sourceTree = "<group>"; };
+		56D0E35721FEE2B30043E41B /* VVUVCController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVUVCController.m; sourceTree = "<group>"; };
+		56D0E35821FEE2B30043E41B /* VVUVCKitStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVUVCKitStringAdditions.m; sourceTree = "<group>"; };
+		56D0E35921FEE2B30043E41B /* VVUVCUIElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VVUVCUIElement.m; sourceTree = "<group>"; };
+		56D0E35A21FEE2B30043E41B /* VVUVCKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVUVCKit.h; sourceTree = "<group>"; };
+		56D0E35B21FEE2B30043E41B /* VVUVCUIController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVUVCUIController.h; sourceTree = "<group>"; };
+		56D0E35C21FEE2B30043E41B /* VVUVCKit-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VVUVCKit-Prefix.pch"; sourceTree = "<group>"; };
+		56D0E35D21FEE2B30043E41B /* VVUVCController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VVUVCController.h; sourceTree = "<group>"; };
+		56D0E35F21FEE2B30043E41B /* OutlineViewNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineViewNode.m; sourceTree = "<group>"; };
+		56D0E36021FEE2B30043E41B /* OutlineViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineViewAdditions.h; sourceTree = "<group>"; };
+		56D0E36121FEE2B30043E41B /* DecodeDeviceDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecodeDeviceDescriptor.h; sourceTree = "<group>"; };
+		56D0E36221FEE2B30043E41B /* DecodeDeviceQualifierDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecodeDeviceQualifierDescriptor.m; sourceTree = "<group>"; };
+		56D0E36421FEE2B30043E41B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		56D0E36521FEE2B30043E41B /* ExtensionSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtensionSelector.m; sourceTree = "<group>"; };
+		56D0E36621FEE2B30043E41B /* DecodeCommClassDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecodeCommClassDescriptor.m; sourceTree = "<group>"; };
+		56D0E36721FEE2B30043E41B /* USBBusProber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USBBusProber.h; sourceTree = "<group>"; };
+		56D0E36821FEE2B30043E41B /* DecodeBOSDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecodeBOSDescriptor.h; sourceTree = "<group>"; };
+		56D0E36921FEE2B30043E41B /* DecodeEndpointDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecodeEndpointDescriptor.h; sourceTree = "<group>"; };
+		56D0E36A21FEE2B30043E41B /* BusProbeClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusProbeClass.h; sourceTree = "<group>"; };
+		56D0E36B21FEE2B30043E41B /* APPLE_LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = APPLE_LICENSE; sourceTree = "<group>"; };
+		56D0E36C21FEE2B30043E41B /* DescriptorDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptorDecoder.h; sourceTree = "<group>"; };
+		56D0E36D21FEE2B30043E41B /* DecodeHubDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecodeHubDescriptor.h; sourceTree = "<group>"; };
+		56D0E36E21FEE2B30043E41B /* BusProberSharedFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusProberSharedFunctions.h; sourceTree = "<group>"; };
+		56D0E36F21FEE2B30043E41B /* DecodeHIDDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecodeHIDDescriptor.m; sourceTree = "<group>"; };
+		56D0E37021FEE2B30043E41B /* TableViewWithCopying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewWithCopying.h; sourceTree = "<group>"; };
+		56D0E37121FEE2B30043E41B /* DecodeVideoInterfaceDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecodeVideoInterfaceDescriptor.m; sourceTree = "<group>"; };
+		56D0E37221FEE2B30043E41B /* USBBusProber-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "USBBusProber-Info.plist"; sourceTree = "<group>"; };
+		56D0E37321FEE2B30043E41B /* BusProber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusProber.m; sourceTree = "<group>"; };
+		56D0E37421FEE2B30043E41B /* DecodeInterfaceDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecodeInterfaceDescriptor.m; sourceTree = "<group>"; };
+		56D0E37521FEE2B30043E41B /* DecodeAudioInterfaceDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecodeAudioInterfaceDescriptor.m; sourceTree = "<group>"; };
+		56D0E37621FEE2B30043E41B /* DecodeConfigurationDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecodeConfigurationDescriptor.m; sourceTree = "<group>"; };
+		56D0E37721FEE2B30043E41B /* BusProbeDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusProbeDevice.m; sourceTree = "<group>"; };
+		56D0E37821FEE2B30043E41B /* DecodeCommClassDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecodeCommClassDescriptor.h; sourceTree = "<group>"; };
+		56D0E37921FEE2B30043E41B /* ExtensionSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionSelector.h; sourceTree = "<group>"; };
+		56D0E37A21FEE2B30043E41B /* DecodeDeviceQualifierDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecodeDeviceQualifierDescriptor.h; sourceTree = "<group>"; };
+		56D0E37B21FEE2B30043E41B /* DecodeDeviceDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecodeDeviceDescriptor.m; sourceTree = "<group>"; };
+		56D0E37C21FEE2B30043E41B /* OutlineViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutlineViewAdditions.m; sourceTree = "<group>"; };
+		56D0E37D21FEE2B30043E41B /* OutlineViewNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutlineViewNode.h; sourceTree = "<group>"; };
+		56D0E37E21FEE2B30043E41B /* DescriptorDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptorDecoder.m; sourceTree = "<group>"; };
+		56D0E37F21FEE2B30043E41B /* BusProbeClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusProbeClass.m; sourceTree = "<group>"; };
+		56D0E38021FEE2B30043E41B /* DecodeBOSDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecodeBOSDescriptor.m; sourceTree = "<group>"; };
+		56D0E38121FEE2B30043E41B /* DecodeEndpointDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecodeEndpointDescriptor.m; sourceTree = "<group>"; };
+		56D0E38221FEE2B30043E41B /* DecodeAudioInterfaceDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecodeAudioInterfaceDescriptor.h; sourceTree = "<group>"; };
+		56D0E38321FEE2B30043E41B /* DecodeInterfaceDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecodeInterfaceDescriptor.h; sourceTree = "<group>"; };
+		56D0E38421FEE2B30043E41B /* DecodeVideoInterfaceDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecodeVideoInterfaceDescriptor.h; sourceTree = "<group>"; };
+		56D0E38521FEE2B30043E41B /* BusProber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusProber.h; sourceTree = "<group>"; };
+		56D0E38621FEE2B30043E41B /* TableViewWithCopying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewWithCopying.m; sourceTree = "<group>"; };
+		56D0E38721FEE2B30043E41B /* DecodeHIDDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecodeHIDDescriptor.h; sourceTree = "<group>"; };
+		56D0E38821FEE2B30043E41B /* BusProberSharedFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusProberSharedFunctions.m; sourceTree = "<group>"; };
+		56D0E38921FEE2B30043E41B /* DecodeHubDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecodeHubDescriptor.m; sourceTree = "<group>"; };
+		56D0E38A21FEE2B30043E41B /* USBBusProber-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "USBBusProber-Prefix.pch"; sourceTree = "<group>"; };
+		56D0E38B21FEE2B30043E41B /* BusProbeDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusProbeDevice.h; sourceTree = "<group>"; };
+		56D0E38C21FEE2B30043E41B /* DecodeConfigurationDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecodeConfigurationDescriptor.h; sourceTree = "<group>"; };
+		56D0E38D21FEE2B30043E41B /* USBVendors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = USBVendors.txt; sourceTree = "<group>"; };
+		56D0E3AD21FEE63E0043E41B /* Bridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridging.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,14 +142,90 @@
 		56BDE31821E21AB5002389DA /* UVCStreamer */ = {
 			isa = PBXGroup;
 			children = (
+				56D0E35E21FEE2B30043E41B /* USBBusProber */,
+				56D0E34F21FEE2B30043E41B /* VVUVCKit */,
 				56BDE31921E21AB5002389DA /* AppDelegate.swift */,
 				56BDE31B21E21AB5002389DA /* ViewController.swift */,
 				56BDE31D21E21AB7002389DA /* Assets.xcassets */,
 				56BDE31F21E21AB7002389DA /* Main.storyboard */,
 				56BDE32221E21AB7002389DA /* Info.plist */,
 				56BDE32321E21AB7002389DA /* UVCStreamer.entitlements */,
+				56D0E3AD21FEE63E0043E41B /* Bridging.h */,
 			);
 			path = UVCStreamer;
+			sourceTree = "<group>";
+		};
+		56D0E34F21FEE2B30043E41B /* VVUVCKit */ = {
+			isa = PBXGroup;
+			children = (
+				56D0E35021FEE2B30043E41B /* VVUVCController.xib */,
+				56D0E35121FEE2B30043E41B /* VVUVCUIElement.h */,
+				56D0E35221FEE2B30043E41B /* InfoPlist.strings */,
+				56D0E35421FEE2B30043E41B /* VVUVCKitStringAdditions.h */,
+				56D0E35521FEE2B30043E41B /* VVUVCUIController.m */,
+				56D0E35621FEE2B30043E41B /* VVUVCKit-Info.plist */,
+				56D0E35721FEE2B30043E41B /* VVUVCController.m */,
+				56D0E35821FEE2B30043E41B /* VVUVCKitStringAdditions.m */,
+				56D0E35921FEE2B30043E41B /* VVUVCUIElement.m */,
+				56D0E35A21FEE2B30043E41B /* VVUVCKit.h */,
+				56D0E35B21FEE2B30043E41B /* VVUVCUIController.h */,
+				56D0E35C21FEE2B30043E41B /* VVUVCKit-Prefix.pch */,
+				56D0E35D21FEE2B30043E41B /* VVUVCController.h */,
+			);
+			path = VVUVCKit;
+			sourceTree = "<group>";
+		};
+		56D0E35E21FEE2B30043E41B /* USBBusProber */ = {
+			isa = PBXGroup;
+			children = (
+				56D0E35F21FEE2B30043E41B /* OutlineViewNode.m */,
+				56D0E36021FEE2B30043E41B /* OutlineViewAdditions.h */,
+				56D0E36121FEE2B30043E41B /* DecodeDeviceDescriptor.h */,
+				56D0E36221FEE2B30043E41B /* DecodeDeviceQualifierDescriptor.m */,
+				56D0E36321FEE2B30043E41B /* InfoPlist.strings */,
+				56D0E36521FEE2B30043E41B /* ExtensionSelector.m */,
+				56D0E36621FEE2B30043E41B /* DecodeCommClassDescriptor.m */,
+				56D0E36721FEE2B30043E41B /* USBBusProber.h */,
+				56D0E36821FEE2B30043E41B /* DecodeBOSDescriptor.h */,
+				56D0E36921FEE2B30043E41B /* DecodeEndpointDescriptor.h */,
+				56D0E36A21FEE2B30043E41B /* BusProbeClass.h */,
+				56D0E36B21FEE2B30043E41B /* APPLE_LICENSE */,
+				56D0E36C21FEE2B30043E41B /* DescriptorDecoder.h */,
+				56D0E36D21FEE2B30043E41B /* DecodeHubDescriptor.h */,
+				56D0E36E21FEE2B30043E41B /* BusProberSharedFunctions.h */,
+				56D0E36F21FEE2B30043E41B /* DecodeHIDDescriptor.m */,
+				56D0E37021FEE2B30043E41B /* TableViewWithCopying.h */,
+				56D0E37121FEE2B30043E41B /* DecodeVideoInterfaceDescriptor.m */,
+				56D0E37221FEE2B30043E41B /* USBBusProber-Info.plist */,
+				56D0E37321FEE2B30043E41B /* BusProber.m */,
+				56D0E37421FEE2B30043E41B /* DecodeInterfaceDescriptor.m */,
+				56D0E37521FEE2B30043E41B /* DecodeAudioInterfaceDescriptor.m */,
+				56D0E37621FEE2B30043E41B /* DecodeConfigurationDescriptor.m */,
+				56D0E37721FEE2B30043E41B /* BusProbeDevice.m */,
+				56D0E37821FEE2B30043E41B /* DecodeCommClassDescriptor.h */,
+				56D0E37921FEE2B30043E41B /* ExtensionSelector.h */,
+				56D0E37A21FEE2B30043E41B /* DecodeDeviceQualifierDescriptor.h */,
+				56D0E37B21FEE2B30043E41B /* DecodeDeviceDescriptor.m */,
+				56D0E37C21FEE2B30043E41B /* OutlineViewAdditions.m */,
+				56D0E37D21FEE2B30043E41B /* OutlineViewNode.h */,
+				56D0E37E21FEE2B30043E41B /* DescriptorDecoder.m */,
+				56D0E37F21FEE2B30043E41B /* BusProbeClass.m */,
+				56D0E38021FEE2B30043E41B /* DecodeBOSDescriptor.m */,
+				56D0E38121FEE2B30043E41B /* DecodeEndpointDescriptor.m */,
+				56D0E38221FEE2B30043E41B /* DecodeAudioInterfaceDescriptor.h */,
+				56D0E38321FEE2B30043E41B /* DecodeInterfaceDescriptor.h */,
+				56D0E38421FEE2B30043E41B /* DecodeVideoInterfaceDescriptor.h */,
+				56D0E38521FEE2B30043E41B /* BusProber.h */,
+				56D0E38621FEE2B30043E41B /* TableViewWithCopying.m */,
+				56D0E38721FEE2B30043E41B /* DecodeHIDDescriptor.h */,
+				56D0E38821FEE2B30043E41B /* BusProberSharedFunctions.m */,
+				56D0E38921FEE2B30043E41B /* DecodeHubDescriptor.m */,
+				56D0E38A21FEE2B30043E41B /* USBBusProber-Prefix.pch */,
+				56D0E38B21FEE2B30043E41B /* BusProbeDevice.h */,
+				56D0E38C21FEE2B30043E41B /* DecodeConfigurationDescriptor.h */,
+				56D0E38D21FEE2B30043E41B /* USBVendors.txt */,
+			);
+			path = USBBusProber;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,7 +291,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56D0E39D21FEE2B30043E41B /* USBBusProber-Info.plist in Resources */,
 				56BDE31E21E21AB7002389DA /* Assets.xcassets in Resources */,
+				56D0E39121FEE2B30043E41B /* VVUVCKit-Info.plist in Resources */,
+				56D0E3AC21FEE2B30043E41B /* USBVendors.txt in Resources */,
+				56D0E38E21FEE2B30043E41B /* VVUVCController.xib in Resources */,
+				56D0E39A21FEE2B30043E41B /* APPLE_LICENSE in Resources */,
 				56BDE32121E21AB7002389DA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,8 +308,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56D0E39C21FEE2B30043E41B /* DecodeVideoInterfaceDescriptor.m in Sources */,
 				56BDE31C21E21AB5002389DA /* ViewController.swift in Sources */,
+				56D0E39B21FEE2B30043E41B /* DecodeHIDDescriptor.m in Sources */,
+				56D0E39021FEE2B30043E41B /* VVUVCUIController.m in Sources */,
+				56D0E3AB21FEE2B30043E41B /* DecodeHubDescriptor.m in Sources */,
+				56D0E3A221FEE2B30043E41B /* BusProbeDevice.m in Sources */,
+				56D0E3A721FEE2B30043E41B /* DecodeBOSDescriptor.m in Sources */,
+				56D0E39221FEE2B30043E41B /* VVUVCController.m in Sources */,
+				56D0E3A621FEE2B30043E41B /* BusProbeClass.m in Sources */,
+				56D0E3A821FEE2B30043E41B /* DecodeEndpointDescriptor.m in Sources */,
+				56D0E3A921FEE2B30043E41B /* TableViewWithCopying.m in Sources */,
+				56D0E3A321FEE2B30043E41B /* DecodeDeviceDescriptor.m in Sources */,
+				56D0E3A521FEE2B30043E41B /* DescriptorDecoder.m in Sources */,
+				56D0E3A121FEE2B30043E41B /* DecodeConfigurationDescriptor.m in Sources */,
+				56D0E39E21FEE2B30043E41B /* BusProber.m in Sources */,
+				56D0E39621FEE2B30043E41B /* DecodeDeviceQualifierDescriptor.m in Sources */,
+				56D0E3AA21FEE2B30043E41B /* BusProberSharedFunctions.m in Sources */,
+				56D0E39821FEE2B30043E41B /* ExtensionSelector.m in Sources */,
+				56D0E39F21FEE2B30043E41B /* DecodeInterfaceDescriptor.m in Sources */,
 				56BDE31A21E21AB5002389DA /* AppDelegate.swift in Sources */,
+				56D0E39321FEE2B30043E41B /* VVUVCKitStringAdditions.m in Sources */,
+				56D0E3A421FEE2B30043E41B /* OutlineViewAdditions.m in Sources */,
+				56D0E39921FEE2B30043E41B /* DecodeCommClassDescriptor.m in Sources */,
+				56D0E39521FEE2B30043E41B /* OutlineViewNode.m in Sources */,
+				56D0E39421FEE2B30043E41B /* VVUVCUIElement.m in Sources */,
+				56D0E3A021FEE2B30043E41B /* DecodeAudioInterfaceDescriptor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +346,22 @@
 				56BDE32021E21AB7002389DA /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		56D0E35221FEE2B30043E41B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				56D0E35321FEE2B30043E41B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		56D0E36321FEE2B30043E41B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				56D0E36421FEE2B30043E41B /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -287,6 +497,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = org.md.UVCStreamer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = UVCStreamer/Bridging.h;
 				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
@@ -306,6 +517,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = org.md.UVCStreamer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = UVCStreamer/Bridging.h;
 				SWIFT_VERSION = 4.2;
 			};
 			name = Release;

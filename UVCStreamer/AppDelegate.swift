@@ -7,18 +7,24 @@
 //
 
 import Cocoa
+import IOKit.pwr_mgt
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-
+    private var assertionID: IOPMAssertionID = 0
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+        let _ = IOPMAssertionCreateWithName( kIOPMAssertionTypeNoDisplaySleep as CFString,
+                                     IOPMAssertionLevel(kIOPMAssertionLevelOn),
+                                     "" as CFString,
+                                     &self.assertionID )
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
+        if self.assertionID != 0 {
+            _ = IOPMAssertionRelease(self.assertionID)
+        }
     }
 
 
