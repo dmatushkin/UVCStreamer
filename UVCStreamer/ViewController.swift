@@ -9,6 +9,7 @@
 import Cocoa
 import AVFoundation
 import CoreGraphics
+import Accelerate
 
 class ViewController: NSViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
 
@@ -16,6 +17,9 @@ class ViewController: NSViewController, AVCaptureVideoDataOutputSampleBufferDele
     @IBOutlet private weak var cameraPopupButton: NSPopUpButton!
     @IBOutlet private weak var imageNameInput: NSTextField!
     @IBOutlet private weak var saveButton: NSButton!
+    @IBOutlet private weak var currentBlurLabel: NSTextField!
+    @IBOutlet private weak var minBlurInput: NSTextField!
+    @IBOutlet private weak var maxBlurInput: NSTextField!
     
     private let videoQueue = DispatchQueue(label: "VideoProcessingQueue", qos: DispatchQoS.userInteractive, attributes: [], autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.inherit, target: nil)
     private let captureSession = AVCaptureSession()
@@ -95,38 +99,79 @@ class ViewController: NSViewController, AVCaptureVideoDataOutputSampleBufferDele
     private var lastImage: Data? = nil
     private var imageName: String = ""
     
-    private func generateFilename() -> String {
+    private func generateFilename(blur: Double) -> String {
         let interval = Date().timeIntervalSince1970
         let prefix = self.imageName.isEmpty ? "Image" : self.imageName
-        return "\(prefix)-\(interval).png"
+        return "\(prefix)-\(interval)-\(blur).png"
     }
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        if self.isSaving, let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) {
-            CVPixelBufferLockBaseAddress(imageBuffer, [])
-            if let baseAddress = CVPixelBufferGetBaseAddress(imageBuffer) {
-                let bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer)
-                let width = CVPixelBufferGetWidth(imageBuffer)
-                let height = CVPixelBufferGetHeight(imageBuffer)
-                let colorSpace = CGColorSpaceCreateDeviceRGB()
-                
-                let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
-                if let context = CGContext(data: baseAddress, width: width, height: height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo.rawValue), let cgImage = context.makeImage() {
-                    let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
-                    if let imageData = bitmapRep.representation(using: .png, properties: [:]), !(self.lastImage?.elementsEqual(imageData) ?? false), let downloads = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first {
-                        self.lastImage = imageData
-                        let url = downloads.appendingPathComponent(self.generateFilename())
-                        do {
-                            try imageData.write(to: url)
-                        } catch {
-                            print("Error write data to \(url.absoluteString) \(error.localizedDescription)")
-                        }
-                        
-                    }
-                }
-            }
+        guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
+        CVPixelBufferLockBaseAddress(imageBuffer, [])
+        defer {
             CVPixelBufferUnlockBaseAddress(imageBuffer, [])
         }
+        guard let baseAddress = CVPixelBufferGetBaseAddress(imageBuffer) else { return }
+        let bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer)
+        let width = CVPixelBufferGetWidth(imageBuffer)
+        let height = CVPixelBufferGetHeight(imageBuffer)
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
+        guard let context = CGContext(data: baseAddress, width: width, height: height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo.rawValue),
+            let cgImage = context.makeImage(),
+            let buffer = ViewController.imageBuffer(image: cgImage) else { return }
+        let blur = ViewController.evaluateBlurriness(buffer: buffer)
+        DispatchQueue.main.async {
+            self.currentBlurLabel.stringValue = "\(blur)"
+        }
+        let blurMin = Double(self.minBlurInput.stringValue) ?? blur
+        let blurMax = Double(self.maxBlurInput.stringValue) ?? blur
+        if self.isSaving && blurMin <= blur && blurMax >= blur {
+            let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
+            if let imageData = bitmapRep.representation(using: .png, properties: [:]), !(self.lastImage?.elementsEqual(imageData) ?? false), let downloads = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first {
+                self.lastImage = imageData
+                let url = downloads.appendingPathComponent(self.generateFilename(blur: blur))
+                do {
+                    try imageData.write(to: url)
+                } catch {
+                    print("Error write data to \(url.absoluteString) \(error.localizedDescription)")
+                }
+                
+            }
+        }
+    }
+    
+    class func imageBuffer(image: CGImage) -> vImage_Buffer? {
+        let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: image.width * image.height)
+        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.none.rawValue)
+        let colorSpace = CGColorSpaceCreateDeviceGray()
+        guard let context = CGContext(data: buffer, width: image.width, height: image.height, bitsPerComponent: 8, bytesPerRow: image.width, space: colorSpace, bitmapInfo: bitmapInfo.rawValue) else {
+            return nil
+        }
+        context.draw(image, in: CGRect(x: 0, y: 0, width: image.width, height: image.height))
+        return vImage_Buffer(data: buffer, height: vImagePixelCount(image.height), width: vImagePixelCount(image.width), rowBytes: image.width)
+    }
+    
+    class func evaluateBlurriness(buffer: vImage_Buffer) -> Double {
+        var buffer = buffer
+        let convolutionPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: Int(buffer.width*buffer.height))
+        var convolutionBuffer = vImage_Buffer(data: convolutionPointer, height: buffer.height, width: buffer.width, rowBytes: buffer.rowBytes)
+        let kernel : [Int16] = [0,1,0, 1,-4,1, 0,1,0]
+        vImageConvolve_Planar8(&buffer, &convolutionBuffer, nil, 0, 0, kernel, 3, 3, 1, 0, UInt32(kvImageTruncateKernel))
+        
+        let imageBufferFloatPointer = UnsafeMutablePointer<Float>.allocate(capacity: Int(buffer.width*buffer.height))
+        var imageBufferFloat = vImage_Buffer(data: imageBufferFloatPointer, height: buffer.height, width: buffer.width, rowBytes: buffer.rowBytes * 4)
+        vImageConvert_Planar8toPlanarF(&convolutionBuffer, &imageBufferFloat, 255.0, 0, UInt32(kvImageNoFlags))
+        var average: Float = 0
+        vDSP_meanv(imageBufferFloatPointer, 1, &average, buffer.width*buffer.height)
+        let unsafeBufferPointer = UnsafeMutableBufferPointer(start: imageBufferFloatPointer, count: Int(buffer.width*buffer.height))
+        let numerator = unsafeBufferPointer.reduce(0) { total, value  in
+            return total + powf(average - value, 2)
+        }
+        imageBufferFloatPointer.deallocate()
+        convolutionPointer.deallocate()
+        
+        return Double(numerator / Float(buffer.width*buffer.height))
     }
 }
 
