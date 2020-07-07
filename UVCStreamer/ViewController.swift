@@ -10,8 +10,9 @@ import Cocoa
 import AVFoundation
 import CoreGraphics
 import Accelerate
+import CoreImage
 
-class ViewController: NSViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
+class ViewController: NSViewController, AVCaptureVideoDataOutputSampleBufferDelegate, NSTextFieldDelegate {
 
     @IBOutlet private weak var videoPanel: NSView!
     @IBOutlet private weak var cameraPopupButton: NSPopUpButton!
@@ -20,6 +21,8 @@ class ViewController: NSViewController, AVCaptureVideoDataOutputSampleBufferDele
     @IBOutlet private weak var currentBlurLabel: NSTextField!
     @IBOutlet private weak var minBlurInput: NSTextField!
     @IBOutlet private weak var maxBlurInput: NSTextField!
+    @IBOutlet private weak var blurMinLabel: NSTextField!
+    @IBOutlet private weak var blurMaxLabel: NSTextField!
     
     private let videoQueue = DispatchQueue(label: "VideoProcessingQueue", qos: DispatchQoS.userInteractive, attributes: [], autoreleaseFrequency: DispatchQueue.AutoreleaseFrequency.inherit, target: nil)
     private let captureSession = AVCaptureSession()
@@ -36,9 +39,15 @@ class ViewController: NSViewController, AVCaptureVideoDataOutputSampleBufferDele
     private let output = AVCaptureVideoDataOutput()
     private var isSaving: Bool = false
     private var settingsController: VVUVCController?
-        
+    private var minBlurValue: Double?
+    private var maxBlurValue: Double?
+	private var minBlurInputValue: Double?
+	private var maxBlurInputValue: Double?
+
     override func viewDidLoad() {
         super.viewDidLoad()
+		self.minBlurInput.delegate = self
+		self.maxBlurInput.delegate = self
         self.videoPanel.layer = CALayer()
         let layer = AVCaptureVideoPreviewLayer(session: self.captureSession)
         self.videoPanel.layer?.addSublayer(layer)
@@ -73,6 +82,16 @@ class ViewController: NSViewController, AVCaptureVideoDataOutputSampleBufferDele
         }
     }
 
+	func controlTextDidChange(_ obj: Notification) {
+		guard let field = obj.object as? NSTextField else { return }
+		if field == self.maxBlurInput {
+			self.maxBlurInputValue = Double(field.stringValue)
+		}
+		if field == self.minBlurInput {
+			self.minBlurInputValue = Double(field.stringValue)
+		}
+	}
+
     override func viewDidLayout() {
         super.viewDidLayout()
         self.videoLayer?.frame = self.videoPanel.bounds
@@ -96,6 +115,11 @@ class ViewController: NSViewController, AVCaptureVideoDataOutputSampleBufferDele
         }
     }
     
+    @IBAction func clearAction(_ sender: Any) {
+        self.minBlurValue = nil
+        self.maxBlurValue = nil
+    }
+
     private var lastImage: Data? = nil
     private var imageName: String = ""
     
@@ -106,39 +130,48 @@ class ViewController: NSViewController, AVCaptureVideoDataOutputSampleBufferDele
     }
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
-        CVPixelBufferLockBaseAddress(imageBuffer, [])
-        defer {
-            CVPixelBufferUnlockBaseAddress(imageBuffer, [])
-        }
-        guard let baseAddress = CVPixelBufferGetBaseAddress(imageBuffer) else { return }
-        let bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer)
-        let width = CVPixelBufferGetWidth(imageBuffer)
-        let height = CVPixelBufferGetHeight(imageBuffer)
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
-        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
-        guard let context = CGContext(data: baseAddress, width: width, height: height, bitsPerComponent: 8, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo.rawValue),
-            let cgImage = context.makeImage(),
-            let buffer = ViewController.imageBuffer(image: cgImage) else { return }
-        let blur = ViewController.evaluateBlurriness(buffer: buffer)
-        DispatchQueue.main.async {
-            self.currentBlurLabel.stringValue = "\(blur)"
-        }
-        let blurMin = Double(self.minBlurInput.stringValue) ?? blur
-        let blurMax = Double(self.maxBlurInput.stringValue) ?? blur
-        if self.isSaving && blurMin <= blur && blurMax >= blur {
-            let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
-            if let imageData = bitmapRep.representation(using: .png, properties: [:]), !(self.lastImage?.elementsEqual(imageData) ?? false), let downloads = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first {
-                self.lastImage = imageData
-                let url = downloads.appendingPathComponent(self.generateFilename(blur: blur))
-                do {
-                    try imageData.write(to: url)
-                } catch {
-                    print("Error write data to \(url.absoluteString) \(error.localizedDescription)")
-                }
-                
-            }
-        }
+		autoreleasepool {
+			guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
+			CVPixelBufferLockBaseAddress(imageBuffer, [])
+			defer {
+				CVPixelBufferUnlockBaseAddress(imageBuffer, [])
+			}
+			guard let baseAddress = CVPixelBufferGetBaseAddress(imageBuffer) else { return }
+			let bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer)
+			let width = CVPixelBufferGetWidth(imageBuffer)
+			let height = CVPixelBufferGetHeight(imageBuffer)
+			let colorSpace = CGColorSpaceCreateDeviceRGB()
+			let dataSize = CVPixelBufferGetDataSize(imageBuffer)
+			let data = Data(bytes: baseAddress, count: dataSize)
+			let image = CIImage(bitmapData: data, bytesPerRow: bytesPerRow, size: CGSize(width: width, height: height), format: .BGRA8, colorSpace: colorSpace)
+			let context = CIContext()
+			guard let cgImage = context.createCGImage(image, from: image.extent),
+				let buffer = ViewController.imageBuffer(image: cgImage) else { return }
+			let blur = ViewController.evaluateBlurriness(buffer: buffer)
+			let minBlur = min(self.minBlurValue ?? blur, blur)
+			let maxBlur = max(self.maxBlurValue ?? blur, blur)
+			self.minBlurValue = minBlur
+			self.maxBlurValue = maxBlur
+			DispatchQueue.main.async {
+				self.currentBlurLabel.stringValue = "\(blur)"
+				self.blurMinLabel.stringValue = "\(minBlur)"
+				self.blurMaxLabel.stringValue = "\(maxBlur)"
+			}
+			let blurMin = self.minBlurInputValue ?? blur
+			let blurMax = self.maxBlurInputValue ?? blur
+			if self.isSaving && blurMin <= blur && blurMax >= blur {
+				let bitmapRep = NSBitmapImageRep(cgImage: cgImage)
+				if let imageData = bitmapRep.representation(using: .png, properties: [:]), !(self.lastImage?.elementsEqual(imageData) ?? false), let downloads = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first {
+					self.lastImage = imageData
+					let url = downloads.appendingPathComponent(self.generateFilename(blur: blur))
+					do {
+						try imageData.write(to: url)
+					} catch {
+						print("Error write data to \(url.absoluteString) \(error.localizedDescription)")
+					}
+				}
+			}
+		}
     }
     
     class func imageBuffer(image: CGImage) -> vImage_Buffer? {
@@ -149,7 +182,9 @@ class ViewController: NSViewController, AVCaptureVideoDataOutputSampleBufferDele
             return nil
         }
         context.draw(image, in: CGRect(x: 0, y: 0, width: image.width, height: image.height))
-        return vImage_Buffer(data: buffer, height: vImagePixelCount(image.height), width: vImagePixelCount(image.width), rowBytes: image.width)
+        let image = vImage_Buffer(data: buffer, height: vImagePixelCount(image.height), width: vImagePixelCount(image.width), rowBytes: image.width)
+		buffer.deallocate()
+		return image
     }
     
     class func evaluateBlurriness(buffer: vImage_Buffer) -> Double {
