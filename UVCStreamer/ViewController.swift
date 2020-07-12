@@ -175,10 +175,12 @@ class ViewController: NSViewController, AVCaptureVideoDataOutputSampleBufferDele
 
 	class func evaluateBlurriness(image: CGImage) -> Double? {
 		let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: image.width * image.height)
+		defer {
+			buffer.deallocate()
+		}
         let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.none.rawValue)
         let colorSpace = CGColorSpaceCreateDeviceGray()
         guard let context = CGContext(data: buffer, width: image.width, height: image.height, bitsPerComponent: 8, bytesPerRow: image.width, space: colorSpace, bitmapInfo: bitmapInfo.rawValue) else {
-			buffer.deallocate()
             return nil
         }
         context.draw(image, in: CGRect(x: 0, y: 0, width: image.width, height: image.height))
@@ -189,7 +191,6 @@ class ViewController: NSViewController, AVCaptureVideoDataOutputSampleBufferDele
 		var mean = Float.nan
 		var stdDev = Float.nan
 		vDSP_normalize(convolution, 1, nil, 1, &mean, &stdDev, vDSP_Length(count))
-		buffer.deallocate()
 		return Double(stdDev)
 	}
 }
